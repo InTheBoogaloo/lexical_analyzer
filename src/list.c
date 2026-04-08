@@ -79,5 +79,7 @@ int push_token(List** l, Token *t){
 }
 
 void destoy_list(List **l){
+	if(*l = NULL) return;
 	
+
 }
