@@ -59,6 +59,7 @@ List* init_list(){
 	return l;
 }
 
+//tess: los 2 siguientes metodos ocupan ser testeados de forma cabrona y encabronada
 int push_token(List** l, Token *t){
 	if(!*l || !t) return -1;
 
