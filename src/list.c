@@ -41,6 +41,7 @@ int main(){
 }
 
 //DEFINICION DE METODOS NECESARIOS
+//tokens tendra su propia implementacion en src donde va este metodo 
 Token* init_token(){
 	Token* t;
 	t = malloc(sizeof(Token));
@@ -59,6 +60,7 @@ List* init_list(){
 	return l;
 }
 
+//tess: los 2 siguientes metodos ocupan ser testeados de forma cabrona y encabronada
 int push_token(List** l, Token *t){
 	if(!*l || !t) return -1;
 

@@ -15,4 +15,6 @@ typedef struct Token{
 	Token_type type;
 }Token;
 
+Token* init_token();
+
 #endif
