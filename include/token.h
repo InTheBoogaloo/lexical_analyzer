@@ -16,5 +16,6 @@ typedef struct Token{
 }Token;
 
 Token* init_token();
+void print_token(Token* t);
 
 #endif

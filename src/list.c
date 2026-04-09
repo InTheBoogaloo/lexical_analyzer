@@ -7,20 +7,11 @@ struct List{
 	Token* head;
 };
 
-//METODOS DE IMPLEMENTACION, NO DE LA API
-Token* init_token();
 List* init_list();
 int push_token(List** l, Token* t);
 void destoy_list(List **l);
 
-//METODOS DE DEBUG
-void print_token(Token* t){
-	printf("current token:%p\n", t);
-	printf("next:%p\n", t->next);
-	printf("lexeme:%s\n", t->lexeme);
-	printf("type:%i\n", t->type);
-}
-
+//METODOS DE IMPLEMENTACION, NO DE LA API
 void print_list(List* l){
 	Token* aux = l->head;
 	while(aux){
@@ -30,28 +21,7 @@ void print_list(List* l){
 	return;
 }
 
-//COMIENZO DEL PROGRAMA
-int main(){
-	List* l = init_list();
-	Token* t = init_token();
-	push_token(&l, t);
-	print_list(l);
-	destoy_list(&l);
-	return 0;
-}
-
 //DEFINICION DE METODOS NECESARIOS
-//tokens tendra su propia implementacion en src donde va este metodo 
-Token* init_token(){
-	Token* t;
-	t = malloc(sizeof(Token));
-	if(!t) return NULL;
-	t->next = NULL;
-	t->lexeme = NULL;
-	t->type = UNKNOWN;
-	return t;
-}
-
 List* init_list(){
 	List *l;
 	l = malloc(sizeof(List));
@@ -60,10 +30,8 @@ List* init_list(){
 	return l;
 }
 
-//tess: los 2 siguientes metodos ocupan ser testeados de forma cabrona y encabronada
 int push_token(List** l, Token *t){
 	if(!*l || !t) return -1;
-
 	if(!(*l)->head){
 		(*l)->head = t;
 		return 0;

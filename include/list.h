@@ -8,5 +8,7 @@ typedef struct List List;
 List* init_list();
 int push_token(List** l, Token* t);
 void destoy_list(List **l);
+//debug
+void print_list(List* l);
 
 #endif
