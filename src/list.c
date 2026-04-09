@@ -77,7 +77,7 @@ int push_token(List** l, Token *t){
 }
 
 void destoy_list(List **l){
-	if(*l == NULL) return;
+	if(*l == NULL || (*l)->head == NULL) return;
 	Token* past_t;
 	Token* current_t = (*l)->head;
 	while(current_t->next){
