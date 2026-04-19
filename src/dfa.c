@@ -29,7 +29,6 @@ int is_operation(const char str){
 	return(str == operations[0] || str == operations[1] || str == operations[2] || str == operations[3]);
 }
 
-//LE FALTA RECONOCER A NUMEROS
 Token* get_next_token(const char* input) {
 	if(!input) return NULL;
 	Token* t = init_token();
@@ -57,12 +56,16 @@ Token* get_next_token(const char* input) {
 		}
 		//numeros
 	}else if(isdigit(*str)){
-		while(isdigit(*str)){
-			
+		while(*str != 0){
+			if(!isdigit(*str) && *str != 0){
+				t->lexeme = strdup(str);
+				t->type = UNKNOWN;
+				return t;									}
 			str++;
 		}
-		
-		//operaciones
+		t->lexeme = strdup(input);
+		t->type = NUMBER;
+		return t;			
 	}if(is_operation(*str)){
 		if(strlen(str) == 1){
 			t->lexeme = strdup(str);
@@ -86,15 +89,15 @@ Token* get_next_token(const char* input) {
 			}
 		}
 		
-			printf("no se encontro una cadena\n");
-			t->lexeme = strdup(str);
-			t->type = UNKNOWN;
-			return t;
+		printf("no se encontro una cadena\n");
+		t->lexeme = strdup(str);
+		t->type = UNKNOWN;
+		return t;
 		
 
 		//errores
 	}else{
-	
+		printf("esto es un error no deberias estar aqui!\n");
 		t->lexeme = strdup(str);
 		t->type = UNKNOWN;
 		return t;					
@@ -105,7 +108,7 @@ Token* get_next_token(const char* input) {
 }
 
 int main(){
-	Token* t = get_next_token("'Ximena Galindo Mata asdfads adsfadsf 1231'");
+	Token* t = get_next_token("/");
 	print_token(t);
 	return 0;
 }
