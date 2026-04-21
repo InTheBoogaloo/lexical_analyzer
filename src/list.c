@@ -16,11 +16,15 @@ void destoy_list(List **l);
 void print_list(List* l){
 	if(!l) return;
 	Token* aux = l->head;
+
 	printf("head: %p\n", l->head);
 	printf("tail: %p\n", l->tail);
-	printf("============\n");
+	printf("========\n");
 	while(aux){
+
 		print_token(aux);
+	printf("\n");
+
 		aux = aux->next;
 	}
 	return;

@@ -6,9 +6,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/token.h"
+#include "../include/list.h"
+
 
 char* keywords[] = {
-	"ls", "mkdir", "touch", "edit", "rm", "help", "clear", "vim"
+  "ls", "mkdir", "touch", "edit", "rm", "help", "clear", "vim", "echo"
 };
 
 char operations[] = {
@@ -106,10 +108,46 @@ Token* get_next_token(const char* input) {
 	free(t);
 	return NULL;
 }
+ 
+List* tokenize(const char* input){
+	if(!input) return NULL;
 
+	List* l = init_list();
+	if(!l) return NULL;
+
+	const char* str = input;
+
+	char buffer[1000];
+	int i = 0;
+  
+	while(1){
+		if(*str == 32) {
+			buffer[i] = '\0';
+			Token* t = get_next_token(buffer);
+			push_token(l,t);
+			str++;
+			i = 0;
+		}
+		if(*str == 0){
+			Token* t = get_next_token(buffer);
+			push_token(l,t);
+			i = 0;
+			return l;
+		}
+		buffer[i] = *str;
+		str++;
+		i++;
+	}
+	return NULL;
+}
+
+
+  
 int main(){
-	Token* t = get_next_token("/");
-	print_token(t);
+	//Token* t = get_next_token("ls");
+	List* l = tokenize("+");
+	print_list(l);
+	//print_token(t);
 	return 0;
 }
 
