@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
 		print_list(l);
 		return 0;
 	}else{
-		printf("modo sin archivo\n");
+		printf("No file input\n");
 		char* input;
 		
 	}
