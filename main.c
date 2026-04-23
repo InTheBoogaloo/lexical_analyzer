@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "include/list.h"
+
+int check_ked_extension(const char* route) {
+    const char* dot = strrchr(route, '.');
+    if (dot && strcmp(dot, ".ked") == 0) return 0;
+    return 1;
+}
 
 char* get_file_content(const char* route) {
     FILE* file = fopen(route, "rb"); //read binary para asignar el tamaño del archivo al buffer
