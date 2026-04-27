@@ -9,19 +9,23 @@
 #include "../include/list.h"
 
 
-char* keywords[] = {
+char* command[] = {
   "ls", "mkdir", "touch", "edit", "rm", "help", "clear", "vim", "echo"
+};
+
+char* keywords[] = {
+	"if", "while", "for", "else"
 };
 
 char operations[] = {
 	'-', '*', '/', '+', '='
 };
 
-int is_keyword(const char* str) {
+int is_command(const char* str) {
 	if(!str) return -1;
-	int num_keywords = sizeof(keywords)/sizeof(keywords[0]);
-	for(int i = 0; i < num_keywords; i++){
-		int flag = strcmp(str, keywords[i]);
+	int num_command = sizeof(command)/sizeof(command[0]);
+	for(int i = 0; i < num_command; i++){
+		int flag = strcmp(str, command[i]);
 		if(flag == 0) return 1;
 	}
 	return 0;
@@ -38,9 +42,9 @@ Token* get_next_token(const char* input) {
 	const char* str = input;
 	//alfabetos
 	if(isalpha(*str)){
-		if(is_keyword(str)){
+		if(is_command(str)){
 			t->lexeme = strdup(str);
-			t->type = KEYWORD;
+			t->type = IDENTIFIER;
 			return t;
 		}else{
 			const char *aux = str;
@@ -53,7 +57,7 @@ Token* get_next_token(const char* input) {
 				aux++;
 			}
 			t->lexeme = strdup(str);
-			t->type = VARIABLE;
+			t->type = IDENTIFIER;
 			return t;
 		}
 		//numeros

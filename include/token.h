@@ -2,10 +2,10 @@
 #define TOKEN_H
 
 typedef enum Token_type{
-	VARIABLE = 1, 
+	IDENTIFIER = 1, 
 	KEYWORD = 2, 
-	NUMBER = 3, //
-	OPERATION = 4, //
+	NUMBER = 3, 
+	OPERATION = 4, 
 	STRING = 5,
 	UNKNOWN = -1 
 }Token_type;
